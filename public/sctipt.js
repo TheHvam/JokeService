@@ -5,6 +5,7 @@ function update(){
     document.querySelector('oprettedeJokes').innerHTML = '';
     for(let input of document.querySelector('input')) input.value = ' ';
     getJokes();
+    console.log("**UPDATED**")
 }
 
 async function getJokes() {
@@ -27,22 +28,24 @@ async function getJokes() {
 
 //onclick
 function setOnClick() {
-    document.querySelector()
-    const joke ={
-        setup: document.querySelector('setup').value};
+    console.log("Entered OnClick")
+    document.querySelector('knapOpretJoke').onclick = () => {
+        const joke = {
+            setup: document.querySelector('setup').value
+        };
         punchline: document.querySelector('punchLine').value,
-
-    fetch('/jokes', {
-        method: "POST",
-        body: JSON.stringify(joke),
-        headers: {'Content-Type': 'application/json'}
-    })  .then(response => {
-        if (response.status >= 400)
-            throw new Error(response.status);
-        else
-            update();
-        return response.json();
-    })
-        .then(resultat => console.log(`Resultat: %o`, resultat))
-        .catch(fejl => console.log('Fejl: ' + fejl));
-};
+            fetch('/jokes', {
+                method: "POST",
+                body: JSON.stringify(joke),
+                headers: {'Content-Type': 'application/json'}
+            }).then(response => {
+                if (response.status >= 400)
+                    throw new Error(response.status);
+                else
+                    update();
+                return response.json();
+            })
+                .then(resultat => console.log(`Resultat: %o`, resultat))
+                .catch(fejl => console.log('Fejl: ' + fejl));
+    };
+}
