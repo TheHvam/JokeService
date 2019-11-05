@@ -15,3 +15,9 @@ exports.getJoke = function (jokeId) {
 exports.getJokes = function () {
     return Joke.find().populate().exec();
 }
+/*
+exports.getJokesFromURL = function (url) {
+    return Joke
+}
+ */
+

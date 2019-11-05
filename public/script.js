@@ -1,8 +1,8 @@
 function update(){
     document.querySelector('#oprettedeJokes').innerHTML = '';
-    //for(let input of document.querySelector('input')) input.value = ' ';
+    document.querySelector('#setup').value = " ";
+    document.querySelector('#punchLine').value = " ";
     getJokes();
-    console.log("**UPDATED**")
 }
 
 async function getJokes() {

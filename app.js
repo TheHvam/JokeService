@@ -14,8 +14,8 @@ app.use(morgan('tiny'));
 // MONGODB & MONGOOSE SETUP
 const mongoose = require('mongoose');
 mongoose.Promise = Promise;
-mongoose.connect(config.localMongoDB + '/jokeDB', {useNewUrlParser: true, useUnifiedTopology: true});
-//mongoose.connect('mongodb+srv://Pains:PainsDB@cluster0-fylfn.gcp.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
+//mongoose.connect(config.localMongoDB + '/jokeDB', {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect('mongodb+srv://Pains:PainsDB@cluster0-fylfn.gcp.mongodb.net/test?retryWrites=true&w=majority', {useNewUrlParser: true, useUnifiedTopology: true});
 
 // ROUTES FOR THE APP
 const jokeRouter = require("./routes/joke");
