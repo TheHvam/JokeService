@@ -1,5 +1,6 @@
 "use strict";
 
+/*
 // INITIALIZATION
 const express = require('express');
 const morgan = require('morgan');
@@ -14,3 +15,11 @@ app.use(morgan('tiny'));
 const mongoose = require('mongoose');
 mongoose.Promise = Promise;
 mongoose.connect(config.localMongoDB + '/companyDB', {useNewUrlParser: true, useUnifiedTopology: true});
+ */
+
+// START THE SERVER
+const port = process.env.PORT || config.localPort;
+app.listen(port);
+console.log('Listening on port ' + port + ' ...');
+
+module.exports = app; // pga. test
