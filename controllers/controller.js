@@ -1,5 +1,3 @@
-"use strict";
-
 const Joke = require('../models/Jokes');
 
 exports.createJoke = function (setup, punchline) {

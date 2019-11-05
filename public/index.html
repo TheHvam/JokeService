@@ -1,11 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
-    <title>Joke Service</title>
+    <title>Verdens Bedste Jokes</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.1/js/bootstrap-select.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/handlebarsjs/4.0.5/handlebars.min.js"></script>
+    <!--    <script src="script.js" defer></script>-->
+
 </head>
 <body>
-<t1>ITS WORKING</t1>
-<p>Numse</p>
+
+<div class="container">
+    <h1>Gruppe 1 er en Joke</h1>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#menuJokes">Opret Jokes!</a></li>  <!-- Her har jeg ændret navnet i company tab -->
+        <li><a data-toggle="tab" href="#menuSeJokes">Se alle Jokes!</a></li>  <!-- Her har jeg ændret navnet i emplyee tab -->
+    </ul>
+
+    <div class="tab-content">
+        <div id="menuJokes" class="tab-pane fade in active">  <!-- Her påbegynder jeg div'en som viser opret jokes -->
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Oprettede Jokes</h3>
+                    <ul id="oprettedeJokes"></ul>  <!-- her har jeg ændret ol id fra "companies" til oprettedeJokes -->
+                    <div style="height:420px;width:400px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+                        <h4> Her kan være jokes</h4>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="well">
+                        <h3>Opret Joke</h3> <!-- her har jeg ændret "add company" til "Opret joke" -->
+                        <label>Setup</label>
+                        <input class="form-control" type="text" name="setup" id="setup"> <!-- her ændre jeg id fra "compName" til "setup" -->
+                        <label>Punchline</label><br>
+                        <input class="form-control" type="text" name="punchLine" id="punchLine"><br/> <!-- her ændre jeg id fra "compHours" til "punchLine" -->
+                        <button type="button" class="btn btn-default" id="knapOpretJoke">Opret</button> <!-- jeg ændre knap id fra "submitCompany" til "knapOpretJoke" -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="menuSeJokes" class="tab-pane fade">  <!-- Her påbegynder jeg div'en som viser tab seJokes -->
+            <div class="row">
+                <div class="col-sm-6">
+                    <h3>Alle Jokes!</h3> <!-- her har jeg ændret fra Emplyees til Alle Jokes! -->
+                    <ul id="alleJokes"></ul> <!-- her har jeg ændret ol id "employees" til "alleJokes" -->
+                    <div style="height:420px;width:400px;border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
 </body>
 </html>
