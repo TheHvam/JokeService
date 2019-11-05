@@ -1,16 +1,13 @@
-setOnClick();
-update();
-
 function update(){
-    document.querySelector('oprettedeJokes').innerHTML = '';
-    for(let input of document.querySelector('input')) input.value = ' ';
+    document.querySelector('#oprettedeJokes').innerHTML = '';
+    //for(let input of document.querySelector('input')) input.value = ' ';
     getJokes();
     console.log("**UPDATED**")
 }
 
 async function getJokes() {
     const [template, jokeResponse] = await Promise.all(
-        [fetch('jokes.hbs'), fetch('/joke')]);
+        [fetch('joke.hbs'), fetch('/joke')]);
     const [templateText, jokes] = await Promise.all(
         [template.text(), jokeResponse.json()]);
     const compiledTemplate = Handlebars.compile(templateText);
@@ -21,24 +18,25 @@ async function getJokes() {
             setup: joke.setup,
             punchline: joke.punchline
         });
-        optionsHTML += '<option data="' + joke._id +'">' + joke.setup +'</option>';
+        optionsHTML += '<option data="' + joke._id + '">' + joke.setup + '</option>';
     });
-        document.querySelector('oprettedeJokes').innerHTML = jokesHTML;
+        document.querySelector('#oprettedeJokes').innerHTML = jokesHTML;
 };
 
 //onclick
 function setOnClick() {
-    console.log("Entered OnClick")
-    document.querySelector('knapOpretJoke').onclick = () => {
+    document.querySelector('#knapOpretJoke').onclick = () => {
+        console.log("Entered OnClick");
         const joke = {
-            setup: document.querySelector('setup').value
+            setup: document.querySelector('#setup').value,
+            punchline: document.querySelector('#punchLine').value
         };
-        punchline: document.querySelector('punchLine').value,
-            fetch('/jokes', {
+            fetch('/joke', {
                 method: "POST",
                 body: JSON.stringify(joke),
                 headers: {'Content-Type': 'application/json'}
-            }).then(response => {
+            })
+                .then(response => {
                 if (response.status >= 400)
                     throw new Error(response.status);
                 else
@@ -48,4 +46,7 @@ function setOnClick() {
                 .then(resultat => console.log(`Resultat: %o`, resultat))
                 .catch(fejl => console.log('Fejl: ' + fejl));
     };
-}
+};
+
+setOnClick();
+update();
