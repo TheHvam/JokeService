@@ -50,7 +50,7 @@
   "keywords": [
     "ender"
   ],
-  "main": "json2.js",
+  "main": "node_modules/JSON/json2.js",
   "name": "JSON",
   "repository": {
     "url": "git://github.com/douglascrockford/JSON-js.git"
