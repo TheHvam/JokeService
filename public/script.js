@@ -47,7 +47,7 @@ function setOnClick() {
             setup: document.querySelector('#setup').value,
             punchline: document.querySelector('#punchLine').value
         };
-            fetch('/joke', {
+            fetch('/api/joke', {
                 method: "POST",
                 body: JSON.stringify(joke),
                 headers: {'Content-Type': 'application/json'}
