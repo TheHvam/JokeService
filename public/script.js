@@ -7,7 +7,7 @@ function update(){
 
 async function getJokes() {
     const [template, jokeResponse] = await Promise.all(
-        [fetch('joke.hbs'), fetch('/joke')]);
+        [fetch('joke.hbs'), fetch('/api/jokes')]);
     const [templateText, jokes] = await Promise.all(
         [template.text(), jokeResponse.json()]);
     const compiledTemplate = Handlebars.compile(templateText);
