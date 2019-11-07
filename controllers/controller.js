@@ -24,9 +24,3 @@ exports.getOthersites = function (url) {
     return arr;
 };
 
-/*
-exports.getJokesFromURL = function (url) {
-    return Joke
-}
- */
-
