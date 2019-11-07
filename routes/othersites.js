@@ -2,6 +2,7 @@ const controller = require("../controllers/controller");
 const express = require('express');
 const router = express.Router();
 
+
 router
     .get('/', (req, res) => {
         controller.getOthersites('https://krdo-joke-registry.herokuapp.com/api/services')
