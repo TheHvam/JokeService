@@ -4,7 +4,7 @@ const router = express.Router();
 
 router
     .get('/', (req, res) => {
-        controller.getOthersites()
+        controller.getOthersites('https://krdo-joke-registry.herokuapp.com/api/services')
             .then(val => res.json(val))
             .catch(err => {
                 console.log(err);
