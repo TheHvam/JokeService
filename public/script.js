@@ -18,7 +18,7 @@ async function getOthersites() {
             address: site.address,
         });
     });
-    document.querySelector('#oprettedeJokes').innerHTML = siteseHTML;
+    document.querySelector('#oprettedeJokes').innerHTML = sitesHTML;
 };
 
 async function getJokes() {
