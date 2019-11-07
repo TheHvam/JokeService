@@ -1,5 +1,4 @@
 const Joke = require('../models/Jokes');
-const fetch = require("node-fetch");
 
 exports.createJoke = function (setup, punchline) {
     const  joke = new Joke({
