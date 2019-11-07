@@ -2,23 +2,25 @@ function update(){
     document.querySelector('#oprettedeJokes').innerHTML = '';
     document.querySelector('#setup').value = " ";
     document.querySelector('#punchLine').value = " ";
+    document.querySelector('#alleJokes').innerHTML = " ";
     getJokes();
+    getOtherSites();
 }
 
-async function getOthersites() {
-    const [template, siteResponse] = await Promise.all(
-        [fetch('othersites.hbs'), fetch('/api/othersites')]);
-    const [templateText, sites] = await Promise.all(
-        [template.text(), siteResponse.json()]);
+async function getOtherSites() {
+    const [template, jokeResponse] = await Promise.all(
+        [fetch('othersites.hbs'), fetch('https://krdo-joke-registry.herokuapp.com/api/services')]);
+    const [templateText, otherjokes] = await Promise.all(
+        [template.text(), jokeResponse.json()]);
     const compiledTemplate = Handlebars.compile(templateText);
-    let sitesHTML = '';
-    sites.forEach(site => {
-        sitesHTML += compiledTemplate({
-            name: site.name,
-            address: site.address,
+    let jokesHTML = '';
+    otherjokes.forEach(otherjoke => {
+        jokesHTML += compiledTemplate({
+            name: otherjoke.name,
+            address: " " + otherjoke.address
         });
     });
-    document.querySelector('#oprettedeJokes').innerHTML = sitesHTML;
+    document.querySelector('#alleJokes').innerHTML = jokesHTML;
 };
 
 async function getJokes() {
