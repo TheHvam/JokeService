@@ -21,6 +21,6 @@ exports.getOthersites = function (url) {
     fetch(url)
         .then(response => response.json())
         .then(array => arr = array);
-    return arr;
+    return arr.exec;
 };
 
