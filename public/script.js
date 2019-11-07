@@ -9,7 +9,7 @@ function update(){
 
 async function getOtherSites() {
     const [template, jokeResponse] = await Promise.all(
-        [fetch('othersites.hbs'), fetch('https://krdo-joke-registry.herokuapp.com/api/services')]);
+        [fetch('othersites.hbs'), fetch('/api/othersites')]);
     const [templateText, otherjokes] = await Promise.all(
         [template.text(), jokeResponse.json()]);
     const compiledTemplate = Handlebars.compile(templateText);
