@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+
 function update(){
     document.querySelector('#oprettedeJokes').innerHTML = '';
     document.querySelector('#setup').value = " ";
@@ -6,6 +8,27 @@ function update(){
     getJokes();
     getOtherSites();
 }
+
+function setOnClickV2() {
+
+}
+
+async function getJokesFromOtherSite(siteUrl) {
+    const url = 'api/jokes';
+    const [template, jokeResponse] = await Promise.all(
+        [fetch('joke.hbs'), fetch(siteUrl + url)]);
+    const [templateText, jokes] = await Promise.all(
+        [template.text(), jokeResponse.json()]);
+    const compiledTemplate = Handlebars.compile(templateText);
+    let jokesHTML = '';
+    jokes.forEach(joke => {
+        jokesHTML += compiledTemplate({
+            setup: joke.setup,
+            punchline: joke.punchline
+        });
+    });
+    document.querySelector('#alleOtherJokes').innerHTML = jokesHTML;
+};
 
 async function getOtherSites() {
     const [template, jokeResponse] = await Promise.all(
@@ -42,7 +65,6 @@ async function getJokes() {
 //onclick
 function setOnClick() {
     document.querySelector('#knapOpretJoke').onclick = () => {
-        console.log("Entered OnClick");
         const joke = {
             setup: document.querySelector('#setup').value,
             punchline: document.querySelector('#punchLine').value
