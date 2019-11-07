@@ -10,6 +10,21 @@ router
                 console.log(err);
                 res.status(500).send(err);
             });
+    })
+    .post('/', (req, res) => {
+        let joke = undefined;
+        const {setup, punchline, jokeId} = req.body;
+        controller.createJoke(setup, punchline)
+            .then(jok =>{
+                joke = jok;
+                return controller.getJoke(jokeId);
+            })
+            .then(() => res.json({message: 'Joke Saved!'}))
+            .catch(err => {
+                console.error("Error: " + err);
+                if (err.stack) console.error(err.stack);
+                res.status(500).send(err);
+            });
     });
 
 module.exports = router;

@@ -11,6 +11,7 @@ router
                     res.status(500).send(err);
                 });
             })
+    /*
         .post('/', (req, res) => {
             let joke = undefined;
             const {setup, punchline, jokeId} = req.body;
@@ -25,6 +26,7 @@ router
                     if (err.stack) console.error(err.stack);
                     res.status(500).send(err);
                 });
-        });
+        })
+        */;
 
 module.exports = router;
