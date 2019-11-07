@@ -5,6 +5,22 @@ function update(){
     getJokes();
 }
 
+async function getOthersites() {
+    const [template, siteResponse] = await Promise.all(
+        [fetch('othersites.hbs'), fetch('/api/othersites')]);
+    const [templateText, sites] = await Promise.all(
+        [template.text(), siteResponse.json()]);
+    const compiledTemplate = Handlebars.compile(templateText);
+    let sitesHTML = '';
+    sites.forEach(site => {
+        sitesHTML += compiledTemplate({
+            name: site.name,
+            address: site.address,
+        });
+    });
+    document.querySelector('#oprettedeJokes').innerHTML = siteseHTML;
+};
+
 async function getJokes() {
     const [template, jokeResponse] = await Promise.all(
         [fetch('joke.hbs'), fetch('/api/jokes')]);
@@ -12,13 +28,11 @@ async function getJokes() {
         [template.text(), jokeResponse.json()]);
     const compiledTemplate = Handlebars.compile(templateText);
     let jokesHTML = '';
-    let optionsHTML = '';
     jokes.forEach(joke => {
         jokesHTML += compiledTemplate({
             setup: joke.setup,
             punchline: joke.punchline
         });
-        optionsHTML += '<option data="' + joke._id + '">' + joke.setup + '</option>';
     });
         document.querySelector('#oprettedeJokes').innerHTML = jokesHTML;
 };

@@ -20,7 +20,7 @@ mongoose.connect('mongodb+srv://Pains:PainsDB@cluster0-fylfn.gcp.mongodb.net/tes
 // ROUTES FOR THE APP
 const jokeRouter = require("./routes/joke");
 app.use('/api/jokes', jokeRouter);
-//app.use('/api/othersites', jokeRouter);
+app.use('/api/othersites', jokeRouter);
 
 // START THE SERVER
 const port = process.env.PORT || config.localPort;
