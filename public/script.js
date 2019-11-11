@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+
 
 function update(){
     document.querySelector('#oprettedeJokes').innerHTML = '';
@@ -9,10 +9,7 @@ function update(){
     getOtherSites();
 }
 
-function setOnClickV2() {
-
-}
-
+/*
 async function getJokesFromOtherSite(siteUrl) {
     const url = 'api/jokes';
     const [template, jokeResponse] = await Promise.all(
@@ -29,6 +26,7 @@ async function getJokesFromOtherSite(siteUrl) {
     });
     document.querySelector('#alleOtherJokes').innerHTML = jokesHTML;
 };
+*/
 
 async function getOtherSites() {
     const [template, jokeResponse] = await Promise.all(
