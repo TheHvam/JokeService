@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const fetch = require('node-fetch');
+const controller = require('../controllers/controller');
 
 async function GET(url) {
     const OK = 200;
@@ -18,6 +19,11 @@ router
                 console.log(err);
                 res.status(500).send(err);
             });
+    })
+    .get('/otherjokes/:site', (req, res) => {
+        controller.getOtherSiteJokes(req.params.site)
+            .then(result => res.json(result))
+            .catch(err => console.log("error: " + err))
     });
 
 module.exports = router;
