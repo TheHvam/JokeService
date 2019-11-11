@@ -9,6 +9,40 @@ function update(){
     getOtherSites();
 }
 
+async function getJokesByServer(server) {
+    const serverName = server.trim();
+    console.log(serverName);
+    try {
+        const res = await fetch('api/othersites');
+        const sites = await res.json();
+
+        const foundSite = sites.find(site => site.name == serverName);
+
+        const siteResponse = await fetch('/api/otherjokes/' + foundSite._id);
+        const siteJson = await siteResponse.json();
+
+        async function GETtext(url) {
+            const OK = 200;
+            let response = await fetch(url);
+            if (response.status !== OK)
+                throw new Error("GET status code " + response.status);
+            return await response.text();
+        }
+
+        async function generateJokeList(jokes) {
+            let template = await GETtext('joke.hbs');
+            let compiledTemplate = Handlebars.compile(template);
+            return compiledTemplate({jokes});
+        }
+
+        let divJokes = document.getElementById('#alleOtherJokes');
+        divJokes.innerHTML = await generateJokeList(siteJson);
+
+    } catch (e) {
+        console.log("Error: " + e);
+    }
+}
+
 function setOnClickV2() {
 
 }
